@@ -45,13 +45,10 @@ immutable Leaf{S}
 end
 
 immutable Node{S,T}
-    isLeaf::Bool
-    majority::S
-    values::Vector{S}
     featid::Int
     featval::T
-    left::Node{S, T}
-    right::Node{S, T}
+    left::Union{Leaf{S},Node{S, T}}
+    right::Union{Leaf{S},Node{S, T}}
 end
 
 @compat const LeafOrNode{S,T} = Union{Leaf{S},Node{S, T}}
